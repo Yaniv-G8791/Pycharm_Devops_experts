@@ -8,7 +8,7 @@ pipeline {
         }
         stage('setup import libs') {
             steps {
-                bat 'python -m pip install pymysql'
+                bat 'python -m pip install pymysql os signal flask requests json'
 
             }
         }
