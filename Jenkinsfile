@@ -14,13 +14,14 @@ pipeline {
         }
         stage('build') {
             steps {
-                bat 'cd Project'
+                bat 'pushd Project'
                 bat 'python rest_app.py'
                 bat 'python web_app.py'
-                bat 'backend_testing.py'
-                bat 'frontend _testing.py'
-                bat 'combined_testing.py'
-                bat 'clean_environemnt.py'
+                bat 'python backend_testing.py'
+                bat 'python frontend _testing.py'
+                bat 'python combined_testing.py'
+                bat 'python clean_environemnt.py'
+                bat 'popd'
             }
         }
     }
