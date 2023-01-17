@@ -1,0 +1,20 @@
+{
+    "dbhost": "sql.freedb.tech",
+    "dbschema_name": "freedb_Yaniv_DB",
+    "dbport": 3306,
+    "dbuser": "freedb_Yaniv",
+    "dbpasswd": "!Q4QHwpt$SSzZbp",
+    "dbdb": "freedb_Yaniv_DB",
+    "Status": "Status",
+    "Reason": "Reason",
+    "code": "Code",
+    "Dbstatus": "",
+	"DbFailReason":"FailureReason",
+    "fullstatus": {
+        "Status": {
+            "Status": "t1",
+            "Reason": "te1"
+        },
+        "Code": 1
+    }
+}
