@@ -14,8 +14,13 @@ pipeline {
         }
         stage('build') {
             steps {
-                bat 'cd Project & python rest_app.py'
-
+                bat 'cd Project'
+                bat 'python rest_app.py'
+                bat 'python web_app.py'
+                bat 'backend_testing.py'
+                bat 'frontend _testing.py'
+                bat 'combined_testing.py'
+                bat 'clean_environemnt.py'
             }
         }
     }
