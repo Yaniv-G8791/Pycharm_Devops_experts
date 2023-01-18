@@ -10,9 +10,6 @@ pipeline {
 		                stage('setup import libs') {
                     steps {
                         bat 'python -m pip install pymysql flask'
-			            dir('Project') {
-                			echo "pwd"
-           						 }
                     }
                 }
 
