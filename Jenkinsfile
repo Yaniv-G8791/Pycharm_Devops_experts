@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-                git checkout 'Yaniv-G8791-Project'
+                git 'https://github.com/Yaniv-G8791/Pycharm_Devops_experts/'
             }
 
         }
