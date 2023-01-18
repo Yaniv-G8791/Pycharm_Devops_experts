@@ -3,16 +3,14 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-                git 'https://github.com/Yaniv-G8791/Pycharm_Devops_experts'
+                git checkout mybranch
             }
 
         }
 		                stage('setup import libs') {
                     steps {
                         bat 'python -m pip install pymysql flask'
-			            dir('Project') {
-                			echo "pwd"
-           						 }
+			            dir('Project')
                     }
                 }
 
