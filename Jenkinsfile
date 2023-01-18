@@ -5,14 +5,14 @@ pipeline {
             steps {
                 git 'https://github.com/Yaniv-G8791/Pycharm_Devops_experts'
             }
-            dir('your-sub-directory') {
-                sh "pwd"
-            }
+
         }
 		                stage('setup import libs') {
                     steps {
                         bat 'python -m pip install pymysql flask'
-
+			            dir('your-sub-directory') {
+                			sh "pwd"
+           						 }
                     }
                 }
         stage('Run Tests') {
