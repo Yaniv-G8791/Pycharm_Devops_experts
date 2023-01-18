@@ -5,7 +5,9 @@ pipeline {
             steps {
                 git 'https://github.com/Yaniv-G8791/Pycharm_Devops_experts'
             }
-            dir('Project')
+		dir('Project'){
+		bat "echo %cd%"
+		}
         }
 		                stage('setup import libs') {
                     steps {
