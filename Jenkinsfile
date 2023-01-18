@@ -16,24 +16,42 @@ pipeline {
 
                 stage('back') {
                     steps {dir('Project'){
-                        bat 'python rest_app.py'
+			    script{
+				    try{
+			    bat 'python rest_app.py'
                         bat 'python backend_testing.py'
 			 bat 'python clean_environemnt.py'
+				    }
+				   catch (Exception e) {
+					   echo 'Exception occurred: ' + e.toString()
+				   }
+			    }
 		    }
                     
                     }
 					}
                 stage('front') {
-                    steps {dir('Project'){
+                    steps {dir('Project'){ script{
+				    try{
                         bat 'python web_app.py'
                         bat 'python frontend _testing.py'
-				}
+				    }
+						    }
+				   catch (Exception e) {
+					   echo 'Exception occurred: ' + e.toString()
+				   }		
+		    
+		    }
 				}}
                 
             
 			stage('combined'){
-				 steps {dir('Project'){
+				 steps {
+					  script{
+				    try{
+					 dir('Project'){
 				bat 'python combined_testing.py'
+					 }}
 				 }
 				}
 			}
