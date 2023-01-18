@@ -15,7 +15,6 @@ pipeline {
            						 }
                     }
                 }
-            parallel {
 
                 stage('back') {
                     steps {
@@ -32,7 +31,7 @@ pipeline {
 
 				}}
                 
-            }
+            
 			stage('combined'){
 				 steps {
 				bat 'python combined_testing.py'
