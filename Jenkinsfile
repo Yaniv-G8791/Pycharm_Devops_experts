@@ -34,12 +34,14 @@ pipeline {
                 
             }
 			stage('combined'){
+				 steps {
 				bat 'python combined_testing.py'
-				
+				}
 			}
 			stage('finish'){
+				 steps {
 				    bat 'python clean_environemnt.py'
-				
+						}
 			}
         
     }
