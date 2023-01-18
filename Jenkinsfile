@@ -10,35 +10,38 @@ pipeline {
 		                stage('setup import libs') {
                     steps {
                         bat 'python -m pip install pymysql flask'
-			    dir('Project'){}
+			    
                     }
                 }
 
                 stage('back') {
-                    steps {
+                    steps {dir('Project'){
                         bat 'python rest_app.py'
                         bat 'python backend_testing.py'
-                        
+		    }
                     
                     }
 					}
                 stage('front') {
-                    steps {
+                    steps {dir('Project'){
                         bat 'python web_app.py'
                         bat 'python frontend _testing.py'
-
+				}
 				}}
                 
             
 			stage('combined'){
-				 steps {
+				 steps {dir('Project'){
 				bat 'python combined_testing.py'
+				 }
 				}
 			}
 			stage('finish'){
 				 steps {
+					 dir('Project'){
 				    bat 'python clean_environemnt.py'
-						}
+					 }	
+					 }
 			}
         
     }
