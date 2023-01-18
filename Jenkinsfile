@@ -18,6 +18,7 @@ pipeline {
                     steps {dir('Project'){
                         bat 'python rest_app.py'
                         bat 'python backend_testing.py'
+			 bat 'python clean_environemnt.py'
 		    }
                     
                     }
