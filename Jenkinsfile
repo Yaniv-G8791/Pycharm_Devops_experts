@@ -5,18 +5,16 @@ pipeline {
             steps {
                 git 'https://github.com/Yaniv-G8791/Pycharm_Devops_experts'
             }
-		dir('Project'){
-		bat "echo %cd%"
-		}
+
         }
 		                stage('setup import libs') {
                     steps {
                         bat 'python -m pip install pymysql flask'
-
+			            dir('Project') {
+                			echo "pwd"
+           						 }
                     }
                 }
-        stage('Run Tests') {
-            parallel {
 
                 stage('back') {
                     steps {
@@ -33,15 +31,17 @@ pipeline {
 
 				}}
                 
-            }
+            
 			stage('combined'){
+				 steps {
 				bat 'python combined_testing.py'
-				
+				}
 			}
 			stage('finish'){
+				 steps {
 				    bat 'python clean_environemnt.py'
-				
+						}
 			}
-        }
+        
     }
 }
