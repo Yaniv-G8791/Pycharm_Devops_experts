@@ -21,7 +21,7 @@ pipeline {
                         dir('Project') {
                             script {
                                 try {
-                                    bat 'start /minpython rest_app.py'
+                                    bat 'start /min python rest_app.py'
                                 } catch (err) {
                                     echo "Failed: ${err}"
                                 }
