@@ -79,7 +79,7 @@ pipeline {
                     try {
                         dir(' Project ') {
                             bat ' python combined_testing.py '
-                        }
+                        }}
                         catch (err) {
                             echo "Failed: ${err}"
                         }
