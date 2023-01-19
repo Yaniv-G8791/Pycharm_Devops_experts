@@ -49,7 +49,7 @@ pipeline {
         stage(' back test ') {
             steps {
 
-                dir('Project') {
+                dir('Project\\Testing') {
                     script {
                         try {
                             bat ' python backend_testing.py '
@@ -62,7 +62,7 @@ pipeline {
         }
         stage(' front test ') {
             steps {
-                dir('Project') {
+                dir('Project\\Testing') {
                     script {
                         try {
                             bat ' python frontend _testing.py '
@@ -79,7 +79,7 @@ pipeline {
             steps {
                 script {
                     try {
-                        dir('Project') {
+                        dir('Project\\Testing') {
                             bat ' python combined_testing.py '
                         }
                     } catch (err) {
