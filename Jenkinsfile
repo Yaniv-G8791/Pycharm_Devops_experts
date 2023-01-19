@@ -21,8 +21,8 @@ pipeline {
                     script {
                         try {
                             bat 'python rest_app.py'
-                        } catch (Exception e) {
-                            echo 'Exception occurred: ' + e.toString()
+                        } catch (err) {
+                            echo "Failed: ${err}"
                         }
                     }
                 }
@@ -37,8 +37,8 @@ pipeline {
 
                         }
                     }
-                    catch (Exception e) {
-                        echo ' Exception occurred: ' + e.toString()
+                    catch (err) {
+                        echo "Failed: ${err}"
                     }
 
                 }
@@ -51,8 +51,8 @@ pipeline {
                     script {
                         try {
                             bat ' python backend_testing.py '
-                        } catch (Exception e) {
-                            echo ' Exception occurred: ' + e.toString()
+                        } catch (err) {
+                            echo "Failed: ${err}"
                         }
                     }
                 }
@@ -66,8 +66,8 @@ pipeline {
                             bat ' python frontend _testing.py '
                         }
                     }
-                    catch (Exception e) {
-                        echo ' Exception occurred: ' + e.toString()
+                    catch (err) {
+                        echo "Failed: ${err}"
                     }
 
                 }
