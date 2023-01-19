@@ -42,6 +42,50 @@ pipeline {
                     
                     }
 
+pipeline {
+    agent any
+    stages {
+        stage('checkout') {
+            steps {
+                git 'https://github.com/Yaniv-G8791/Pycharm_Devops_experts/'
+            }
+
+        }
+        stage('setup import libs') {
+            steps {
+                bat 'python -m pip install pymysql flask'
+
+            }
+        }
+
+        stage('back') {
+            steps {
+
+                dir('Project') {
+                    script {
+                        try {
+                            bat 'python rest_app.py'
+                        } catch (err) {
+                            echo "Failed: ${err}"
+                        }
+                    }
+                }
+            }
+        }
+        stage('front') {
+            steps {
+                dir('Project') {
+                    script {
+                        try {
+                            bat 'python web_app.py'
+
+                        }
+                        catch (err) {
+                        echo "Failed: ${err}"
+                    }
+                    
+                    }
+
                 }
             }
         }
@@ -66,9 +110,10 @@ pipeline {
                         try {
                             bat ' python frontend _testing.py '
                         }
-                    }
-                    catch (err) {
+                         catch (err) {
                         echo "Failed: ${err}"
+                    }
+                   
                     }
 
                 }
@@ -96,6 +141,6 @@ pipeline {
                 }
             }
         }
-
-    }
+		
+}}
 }
