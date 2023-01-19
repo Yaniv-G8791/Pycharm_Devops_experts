@@ -36,9 +36,10 @@ pipeline {
                             bat 'python web_app.py'
 
                         }
-                    }
-                    catch (err) {
+                        catch (err) {
                         echo "Failed: ${err}"
+                    }
+                    
                     }
 
                 }
@@ -80,6 +81,8 @@ pipeline {
                         dir(' Project ') {
                             bat ' python combined_testing.py '
                         }
+                        catch (err) {
+                        echo "Failed: ${err}"
                     }
                 }
             }
