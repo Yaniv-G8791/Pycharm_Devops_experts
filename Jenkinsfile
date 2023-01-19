@@ -52,7 +52,7 @@ pipeline {
                 dir('Project\\Testing') {
                     script {
                         try {
-                            bat ' python backend_testing.py '
+                            bat ' python l5_backend_testing.py '
                         } catch (err) {
                             echo "Failed: ${err}"
                         }
@@ -65,7 +65,7 @@ pipeline {
                 dir('Project\\Testing') {
                     script {
                         try {
-                            bat ' python frontend _testing.py '
+                            bat ' python l5_frontend_testing.py '
                         } catch (err) {
                             echo "Failed: ${err}"
                         }
@@ -80,7 +80,7 @@ pipeline {
                 script {
                     try {
                         dir('Project\\Testing') {
-                            bat ' python combined_testing.py '
+                            bat ' python l5_combined_testing.py '
                         }
                     } catch (err) {
                         echo "Failed: ${err}"
