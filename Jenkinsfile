@@ -16,7 +16,8 @@ pipeline {
 
         stage('back') {
             steps {
-
+timeout(5) {
+    waitUntil {
                 dir('Project') {
                     script {
                         try {
@@ -26,10 +27,12 @@ pipeline {
                         }
                     }
                 }
-            }
+    }}}
         }
         stage('front') {
             steps {
+                timeout(5) {
+    waitUntil {
                 dir('Project') {
                     script {
                         try {
@@ -43,7 +46,7 @@ pipeline {
 
                                             }
                                         }
-                                    }
+                }}}
                                     stage(' back test ') {
                                         steps {
 
