@@ -21,7 +21,7 @@ pipeline {
                         dir('Project') {
                             script {
                                 try {
-                                    bat 'python rest_app.py'
+                                    bat 'start /minpython rest_app.py'
                                 } catch (err) {
                                     echo "Failed: ${err}"
                                 }
@@ -38,7 +38,7 @@ pipeline {
                         dir('Project') {
                             script {
                                 try {
-                                    bat 'python web_app.py'
+                                    bat 'start /min python web_app.py'
 
                                 } catch (err) {
                                     echo "Failed: ${err}"
