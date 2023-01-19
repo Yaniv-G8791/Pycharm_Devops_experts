@@ -16,8 +16,7 @@ pipeline {
 
         stage('back') {
             steps {
-timeout(5) {
-    waitUntil {
+
                 dir('Project') {
                     script {
                         try {
@@ -27,74 +26,73 @@ timeout(5) {
                         }
                     }
                 }
-    }}}
+            }
         }
         stage('front') {
             steps {
-                timeout(5) {
-    waitUntil {
                 dir('Project') {
                     script {
                         try {
                             bat 'python web_app.py'
-                            '
-                                                    }
-                                                }
-                                                catch (Exception e) {
-                                                    echo ' Exception occurred: ' + e.toString()
-                                                }
 
-                                            }
-                                        }
-                }}}
-                                    stage(' back test ') {
-                                        steps {
+                        }
+                    }
+                    catch (Exception e) {
+                        echo ' Exception occurred: ' + e.toString()
+                    }
 
-                                            dir(' Project ') {
-                                                script {
-                                                    try {
-                                                        bat ' python backend_testing.py '
-                                                    } catch (Exception e) {
-                                                        echo ' Exception occurred: ' + e.toString()
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                    stage(' front test ') {
-                                        steps {
-                                            dir(' Project ') {
-                                                script {
-                                                    try {
-                                                        bat ' python frontend _testing.py '
-                                                    }
-                                                }
-                                                catch (Exception e) {
-                                                    echo ' Exception occurred: ' + e.toString()
-                                                }
+                }
+            }
+        }
+        stage(' back test ') {
+            steps {
 
-                                            }
-                                        }
-                                    }
-                                    stage(' combined ') {
-                                        steps {
-                                            script {
-                                                try {
-                                                    dir(' Project ') {
-                                                        bat ' python combined_testing.py '
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                    stage(' finish ') {
-                                        steps {
-                            				 script {
-                                            dir(' Project ') {
-                                                bat ' python clean_environemnt.py '
-                                            }
-                                        }}
-                                    }
+                dir(' Project ') {
+                    script {
+                        try {
+                            bat ' python backend_testing.py '
+                        } catch (Exception e) {
+                            echo ' Exception occurred: ' + e.toString()
+                        }
+                    }
+                }
+            }
+        }
+        stage(' front test ') {
+            steps {
+                dir(' Project ') {
+                    script {
+                        try {
+                            bat ' python frontend _testing.py '
+                        }
+                    }
+                    catch (Exception e) {
+                        echo ' Exception occurred: ' + e.toString()
+                    }
 
-                                }
-                            }
+                }
+            }
+        }
+        stage(' combined ') {
+            steps {
+                script {
+                    try {
+                        dir(' Project ') {
+                            bat ' python combined_testing.py '
+                        }
+                    }
+                }
+            }
+        }
+        stage(' finish ') {
+            steps {
+                script {
+                    dir(' Project ') {
+                        bat ' python clean_environemnt.py '
+                    }
+                }
+            }
+        }
+
+    }
+}
