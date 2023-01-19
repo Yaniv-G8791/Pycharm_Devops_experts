@@ -16,13 +16,16 @@ pipeline {
 
         stage('back') {
             steps {
-
-                dir('Project') {
-                    script {
-                        try {
-                            bat 'python rest_app.py'
-                        } catch (err) {
-                            echo "Failed: ${err}"
+                timeout(5) {
+                    waitUntil {
+                        dir('Project') {
+                            script {
+                                try {
+                                    bat 'python rest_app.py'
+                                } catch (err) {
+                                    echo "Failed: ${err}"
+                                }
+                            }
                         }
                     }
                 }
@@ -30,17 +33,21 @@ pipeline {
         }
         stage('front') {
             steps {
-                dir('Project') {
-                    script {
-                        try {
-                            bat 'python web_app.py'
+                timeout(5) {
+                    waitUntil {
+                        dir('Project') {
+                            script {
+                                try {
+                                    bat 'python web_app.py'
 
-                        } catch (err) {
-                            echo "Failed: ${err}"
+                                } catch (err) {
+                                    echo "Failed: ${err}"
+                                }
+
+                            }
+
                         }
-
                     }
-
                 }
             }
         }
@@ -79,22 +86,22 @@ pipeline {
                     try {
                         dir(' Project ') {
                             bat ' python combined_testing.py '
-                        }}
-                        catch (err) {
-                            echo "Failed: ${err}"
                         }
+                    } catch (err) {
+                        echo "Failed: ${err}"
                     }
                 }
             }
-            stage(' finish ') {
-                steps {
-                    script {
-                        dir(' Project ') {
-                            bat ' python clean_environemnt.py '
-                        }
-                    }
-                }
-            }
-
         }
+        stage(' finish ') {
+            steps {
+                script {
+                    dir(' Project ') {
+                        bat ' python clean_environemnt.py '
+                    }
+                }
+            }
+        }
+
+    }
 }
