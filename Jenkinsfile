@@ -15,7 +15,9 @@ pipeline {
                 }
 
                 stage('back') {
-                    steps {dir('Project'){
+                    steps {
+			    
+			    dir('Project'){
 			    script{
 				    try{
 			    bat 'python rest_app.py'
